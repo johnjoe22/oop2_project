@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class AddressBook extends JFrame implements ActionListener,Serializable {
 		 
@@ -13,20 +14,21 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 
 	}
 	
-	public void save(){
-         		File file = new File("ListOfContacts.dat");
-         		FileOutputStream fos = new FileOutputStrem(file);
-         		ObjectOutputStream oos = newObjectOutputStream(fos);
+/*	public void save(){
+         		File file = new File("contactList.dat");
+         		FileOutputStream fos = new FileOutputStream(file);
+         		ObjectOutputStream oos = new ObjectOutputStream(fos);
          			oos.WriteObject(t00174319);
          			file.close();
+         			JOptionPane.showMessageDialog(null,"Contact saved");
          	}
 	public void open(){
-					File file = new File("ListOfContacts.dat");
+					File file = new File("contactList.dat");
 					FileInputStream fis = new FileInputStream(file);
-					ObjectOutputStream ois = new ObjectOutputStream(fis);
+					ObjectInputStream ois = new ObjectInputStream(fis);
 					listOfContacts=oos.readobject();
 					oos.close(); 
-				}
+				}*/
 		
 	//creating jframe
 	public AddressBook(){
@@ -60,24 +62,22 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
          else if (menuName.equals("New contact")) { //new contact
          	
          	String answer="y";
+         	String [] Contact;
          	
-         	Arraylist<contact> listOfContacts = new Arraylist<contact>();
+         	ArrayList <Contact> contactList = new ArrayList <Contact>();
          	while(!answer.equals("y")){
-         		 name = JOptionPane.showInputDialog(null,"Name: ");
+         		 forname = JOptionPane.showInputDialog(null,"Forname: ");
+         		 surname = JOptionPane.showInputDialog(null,"Surname: ");
         		 email = JOptionPane.showInputDialog(null,"E-mail: ");
-        		 contact.add(contact);
+        		 contactList.add(Contact);
         		 answer=JOptionPane.showInputDialog(null,"Would you like to enter another contact? ");
          	}
-         	save();
+         	//save();
          
         } 
         	else if (menuName.equals("List of contacts")){ //List of contacts
 					
-				
-					for (contact c:listOfContacts){
-						output.append(c.toString()+"\n");
-					}
-				open();
+				//open();
        		         
         	}
         	else if (menuName.equals("Delete contact")){//Delete contact
