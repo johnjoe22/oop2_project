@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class AddressBook extends JFrame implements ActionListener,Serializable {
 		 
 		 JMenu menuItem;
+		 String[] contactList; //creates array of arrays
 		 
 	public static void main(String[] args) {
 		AddressBook frame = new AddressBook();
@@ -16,18 +17,31 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 	
 	public void save(){
          		File file = new File("contactList.dat");
+         		try{
+         			
          		FileOutputStream fos = new FileOutputStream(file);
          		ObjectOutputStream oos = new ObjectOutputStream(fos);
-         			oos.WriteObject(file);
-         			file.close();
-         			JOptionPane.showMessageDialog(null,"Contact saved");
+         			oos.writeObject(contactList);
+         			oos.close();	
+         				JOptionPane.showMessageDialog(null,"conatct saved ");
+         		}catch(Exception e){
+         			JOptionPane.showMessageDialog(null,"ERROR");
+         			}
+         		
+         			
          	}
 	public void open(){
+	
 					File file = new File("contactList.dat");
+					try{
 					FileInputStream fis = new FileInputStream(file);
 					ObjectInputStream ois = new ObjectInputStream(fis);
-					listOfContacts=oos.readobject();
-					oos.close(); 
+					for(int i=0;i<4;i++){
+						contactList[i] = (String)ois.readObject();
+					}
+					ois.close();	
+					}catch(Exception e){}
+					 
 				}
 		
 	//creating jframe
@@ -49,9 +63,8 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 	public void actionPerformed(ActionEvent e) {
         String  menuName="";
         menuName = e.getActionCommand(); 
-        String name="";
-		String email="";
-		
+        String answer="y";
+       
 
 
         if (menuName.equals("Quit")) { //quit option
@@ -59,25 +72,30 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
         } 
         	
          else if (menuName.equals("New contact")) { //new contact
+         		contactList = new String[3]; 	
          	
-         	String answer="y";
-         	String [] Contact;
+	        	contactList[0] = JOptionPane.showInputDialog(null,"Forname: ");
+         		contactList[1] = JOptionPane.showInputDialog(null,"Surname: ");
+        		contactList[2] = JOptionPane.showInputDialog(null,"E-mail: ");
+        		save();
+        		
          	
-         	ArrayList <Contact> contactList = new ArrayList <Contact>();
-         	while(!answer.equals("y")){+
-	`         		 forname = JOptionPane.showInputDialog(null,"Forname: ");
-         		 surname = JOptionPane.showInputDialog(null,"Surname: ");
-        		 email = JOptionPane.showInputDialog(null,"E-mail: ");
-        		 contactList.add(Contact);
-        		 answer=JOptionPane.showInputDialog(null,"Would you like to enter another contact? ");
-         	}
-         	save();
+         	
          
         } 
         	else if (menuName.equals("List of contacts")){ //List of contacts
 					
 				open();
+       		         String b = "";
        		         
+       		         
+       		         for(int i = 0;i<contactList.length;i++){
+       		         	if(i%3==0)
+       		         		b+="\n";
+       		         	b+=contactList[i]+"\n";
+       		         }
+       		         
+       		         JOptionPane.showMessageDialog(null,b);
         	}
         	else if (menuName.equals("Delete contact")){//Delete contact
         	
