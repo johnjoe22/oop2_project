@@ -7,6 +7,9 @@ public class Contact implements Serializable {
     	private String surname;
     	private String email;
     	
+    	contact.add(forename);
+    	contact.add(surname);
+    	contact.add(email);
     	
     	
     }

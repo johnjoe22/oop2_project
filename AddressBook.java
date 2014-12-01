@@ -14,11 +14,11 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 
 	}
 	
-/*	public void save(){
+	public void save(){
          		File file = new File("contactList.dat");
          		FileOutputStream fos = new FileOutputStream(file);
          		ObjectOutputStream oos = new ObjectOutputStream(fos);
-         			oos.WriteObject(t00174319);
+         			oos.WriteObject(file);
          			file.close();
          			JOptionPane.showMessageDialog(null,"Contact saved");
          	}
@@ -28,7 +28,7 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 					ObjectInputStream ois = new ObjectInputStream(fis);
 					listOfContacts=oos.readobject();
 					oos.close(); 
-				}*/
+				}
 		
 	//creating jframe
 	public AddressBook(){
@@ -36,7 +36,6 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
 		setTitle("Address Book");
 		setSize(600,600);
 		setLocation(200,200);
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		createMenu();
@@ -65,19 +64,19 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
          	String [] Contact;
          	
          	ArrayList <Contact> contactList = new ArrayList <Contact>();
-         	while(!answer.equals("y")){
-         		 forname = JOptionPane.showInputDialog(null,"Forname: ");
+         	while(!answer.equals("y")){+
+	`         		 forname = JOptionPane.showInputDialog(null,"Forname: ");
          		 surname = JOptionPane.showInputDialog(null,"Surname: ");
         		 email = JOptionPane.showInputDialog(null,"E-mail: ");
         		 contactList.add(Contact);
         		 answer=JOptionPane.showInputDialog(null,"Would you like to enter another contact? ");
          	}
-         	//save();
+         	save();
          
         } 
         	else if (menuName.equals("List of contacts")){ //List of contacts
 					
-				//open();
+				open();
        		         
         	}
         	else if (menuName.equals("Delete contact")){//Delete contact
