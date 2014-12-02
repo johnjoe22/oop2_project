@@ -4,47 +4,12 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class AddressBook extends JFrame implements ActionListener,Serializable {
+public class AddressBook extends JFrame implements ActionListener {
 		 
-		 JMenu menuItem;
-		 String[] contactList; //creates array of arrays
-		 
-	public static void main(String[] args) {
-		AddressBook frame = new AddressBook();
-        frame.setVisible(true);
-
-	}
+	JMenu menuItem;
+	Contact[] contactList = new Contact[2]; 
 	
-	public void save(){
-         		File file = new File("contactList.dat");
-         		try{
-         			
-         		FileOutputStream fos = new FileOutputStream(file);
-         		ObjectOutputStream oos = new ObjectOutputStream(fos);
-         			oos.writeObject(contactList);
-         			oos.close();	
-         				JOptionPane.showMessageDialog(null,"conatct saved ");
-         		}catch(Exception e){
-         			JOptionPane.showMessageDialog(null,"ERROR");
-         			}
-         		
-         			
-         	}
-	public void open(){
-	
-					File file = new File("contactList.dat");
-					try{
-					FileInputStream fis = new FileInputStream(file);
-					ObjectInputStream ois = new ObjectInputStream(fis);
-					for(int i=0;i<4;i++){
-						contactList[i] = (String)ois.readObject();
-					}
-					ois.close();	
-					}catch(Exception e){}
-					 
-				}
-		
-	//creating jframe
+	// Class
 	public AddressBook(){
 		
 		setTitle("Address Book");
@@ -59,65 +24,99 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
         menuBar.add(menuItem);
 	}
 	
-	//action listener
+	// Main
+	public static void main(String[] args) {
+		AddressBook frame = new AddressBook();
+        frame.setVisible(true);
+	}
+	
+	// SAVE
+	public void save(){
+		File file = new File("contactList.dat");
+		try{	
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			int i = 0;
+			while(!contactList[i].getForename().equals("")){
+				oos.writeObject(contactList[i]);
+				i++;
+			}
+			
+			oos.close();	
+			JOptionPane.showMessageDialog(null,"conatct saved ");
+		}catch(Exception e){
+			JOptionPane.showMessageDialog(null,"ERROR");
+		}   			
+    }
+    
+    // OPEN
+	public void open(){
+		File file = new File("contactList.dat");
+		try{
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			for(int i=0;i<contactList.length;i++){
+				contactList[i].setForename((String)ois.readObject());
+				contactList[i].setSurname((String)ois.readObject());
+				contactList[i].setEmail((String)ois.readObject());
+			}
+			ois.close();	
+		}catch(Exception e){}
+					 
+	}
+		
+	
+	
+	// LISTENER
 	public void actionPerformed(ActionEvent e) {
         String  menuName="";
         menuName = e.getActionCommand(); 
         String answer="y";
-       
 
-
-        if (menuName.equals("Quit")) { //quit option
-           System.exit(0);
-        } 
-        	
-         else if (menuName.equals("New contact")) { //new contact
-         		contactList = new String[3]; 	
-         	
-	        	contactList[0] = JOptionPane.showInputDialog(null,"Forname: ");
-         		contactList[1] = JOptionPane.showInputDialog(null,"Surname: ");
-        		contactList[2] = JOptionPane.showInputDialog(null,"E-mail: ");
-        		save();
-        		
-         	
-         	
-         
-        } 
-        	else if (menuName.equals("List of contacts")){ //List of contacts
+		switch(menuName){
+			case "Quit":
+				System.exit(0);
+				break;
+				
+			case "New contact":
+				for (int i = 0;i<2;i++){ 
+		        	contactList[i].setForename (JOptionPane.showInputDialog(null,"Forname: "));
+	         		contactList[i].setSurname (JOptionPane.showInputDialog(null,"Surname: "));
+	        		contactList[i].setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
+         		}
+         		save();
+         		break;
+         		
+         	case "List of contacts":
+         		open();
+         		int i = 0;
+         		String message = "";
+				while(!contactList[i].getForename().equals("")){
+					message += contactList[i].getForename();
+					message += contactList[i].getSurname();
+					message += contactList[i].getEmail();
+					message += "\n";
+					i++;
+				}
 					
-				open();
-       		         String b = "";
-       		         
-       		         
-       		         for(int i = 0;i<contactList.length;i++){
-       		         	if(i%3==0)
-       		         		b+="\n";
-       		         	b+=contactList[i]+"\n";
-       		         }
-       		         
-       		         JOptionPane.showMessageDialog(null,b);
-        	}
-        	else if (menuName.equals("Delete contact")){//Delete contact
-        	
-        		JOptionPane.showMessageDialog(null,"Menu Item " + menuName + " is selected.");
-
-        	}
-        	else if (menuName.equals("Edit contact")){ //Edit contact
-        	
-        		JOptionPane.showMessageDialog(null,"Menu Item " + menuName + " is selected.");
-        	}
-        	else if (menuName.equals("Create mail")){
-        		JOptionPane.showMessageDialog(null,"Menu item"+menuName+" is selected.");
-        	}
-    } // end actionPerformend
+				break;
+				
+			case "Delete contact":
+				JOptionPane.showMessageDialog(null,"Menu Item " + menuName + " is selected.");
+				break;
+				
+			case "Create mail":
+				JOptionPane.showMessageDialog(null,"Menu item"+menuName+" is selected.");
+				break;	
+        }
+    }
     
     
 	
-	//create items in the menu bar
+	// CREATE MENU		
 	public void createMenu(){
 		
 		JMenuItem item;
-        	
         
         menuItem = new JMenu("File");
 
@@ -133,11 +132,11 @@ public class AddressBook extends JFrame implements ActionListener,Serializable {
         item.addActionListener( this );
         menuItem.add( item  );
         
-        item = new JMenuItem("Quit");    //Quit
+        item = new JMenuItem("Create mail");    //create mail
         item.addActionListener( this );
         menuItem.add( item );
         
-        item = new JMenuItem("Create mail");    //create mail
+        item = new JMenuItem("Quit");    //Quit
         item.addActionListener( this );
         menuItem.add( item );
 	}
