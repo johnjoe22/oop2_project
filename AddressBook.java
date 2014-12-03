@@ -8,6 +8,7 @@ public class AddressBook extends JFrame implements ActionListener {
 		 
 	JMenu menuItem;
 	Contact[] contactList = new Contact[2]; 
+		Contact contact;
 	
 	// Class
 	public AddressBook(){
@@ -36,14 +37,15 @@ public class AddressBook extends JFrame implements ActionListener {
 		try{	
 			FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			int i = 0;
-			while(!contactList[i].getForename().equals("")){
-				oos.writeObject(contactList[i]);
-				i++;
-			}
+			//int i = 0;
+			//while(!contactList[i].getForename().equals("")){
+			//	oos.writeObject(contactList[i]);
+			//	i++;
+				oos.writeObject(contactList);
+			//}
 			
 			oos.close();	
-			JOptionPane.showMessageDialog(null,"conatct saved ");
+			JOptionPane.showMessageDialog(null,"Conatcts saved ");
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null,"ERROR");
 		}   			
@@ -71,7 +73,6 @@ public class AddressBook extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
         String  menuName="";
         menuName = e.getActionCommand(); 
-        String answer="y";
 
 		switch(menuName){
 			case "Quit":
@@ -79,10 +80,14 @@ public class AddressBook extends JFrame implements ActionListener {
 				break;
 				
 			case "New contact":
-				for (int i = 0;i<2;i++){ 
-		        	contactList[i].setForename (JOptionPane.showInputDialog(null,"Forname: "));
-	         		contactList[i].setSurname (JOptionPane.showInputDialog(null,"Surname: "));
-	        		contactList[i].setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
+				for (int i = 0;i<contactList.length;i++){ 
+					contact =new Contact();
+		        	
+		        	
+		        	contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
+	         		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
+	        		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
+	        		contactList[i]=contact;
          		}
          		save();
          		break;
