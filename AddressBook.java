@@ -70,13 +70,11 @@ public class AddressBook extends JFrame implements ActionListener {
 		Contact contact = new Contact();
 		
 		contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
-		contactList.add("contact");
-		
 		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
-		contactList.add("contact");
-		
 		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
-		contactList.add("contact");
+		contactList.add();
+		
+		
 		
 	}
 		
@@ -99,13 +97,13 @@ public class AddressBook extends JFrame implements ActionListener {
          		
          	case "List of contacts":
          		open();
-         	/*	String message = "";
+         		
          		for(int i = 0;i<contactList.size();i++){
-         			message += (contactList.get(i));
-					message += "\n";
+         			JOptionPane.showMessageDialog(null,"info"+(contactList.get(i)));
+         		
 					i++;
-}  	
-         		}*/
+
+         		}
          			
 				break;
 				
