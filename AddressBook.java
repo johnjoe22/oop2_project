@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 public class AddressBook extends JFrame implements ActionListener {
-		 
+	
 	JMenu menuItem;
 	ArrayList <String> contactList;
 	
@@ -63,8 +63,7 @@ public class AddressBook extends JFrame implements ActionListener {
 	
 	//ADDING CONTACT
 	public void addContact(){
-		String quit;
-		
+		String quit;	 
 		contactList = new ArrayList<String>();
 		
 		Contact contact = new Contact();
@@ -73,9 +72,6 @@ public class AddressBook extends JFrame implements ActionListener {
 		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
 		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
 		contactList.add();
-		
-		
-		
 	}
 		
 	
