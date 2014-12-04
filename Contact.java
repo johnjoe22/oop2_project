@@ -21,6 +21,7 @@ public class Contact implements Serializable{
 	// SET
 	public void setForename(String forename){
 		this.forename = forename;
+		
 	}
 	
 	public void setSurname(String surname){

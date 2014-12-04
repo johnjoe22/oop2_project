@@ -1,14 +1,15 @@
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class AddressBook extends JFrame implements ActionListener {
 		 
 	JMenu menuItem;
-	Contact[] contactList = new Contact[2]; 
-		Contact contact;
+	ArrayList <String> contactList;
 	
 	// Class
 	public AddressBook(){
@@ -37,12 +38,8 @@ public class AddressBook extends JFrame implements ActionListener {
 		try{	
 			FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			//int i = 0;
-			//while(!contactList[i].getForename().equals("")){
-			//	oos.writeObject(contactList[i]);
-			//	i++;
 				oos.writeObject(contactList);
-			//}
+			
 			
 			oos.close();	
 			JOptionPane.showMessageDialog(null,"Conatcts saved ");
@@ -57,14 +54,30 @@ public class AddressBook extends JFrame implements ActionListener {
 		try{
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			for(int i=0;i<contactList.length;i++){
-				contactList[i].setForename((String)ois.readObject());
-				contactList[i].setSurname((String)ois.readObject());
-				contactList[i].setEmail((String)ois.readObject());
+			for(int i=0;i<contactList.size();i++){
 			}
 			ois.close();	
 		}catch(Exception e){}
 					 
+	}
+	
+	//ADDING CONTACT
+	public void addContact(){
+		String quit;
+		
+		contactList = new ArrayList<String>();
+		
+		Contact contact = new Contact();
+		
+		contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
+		contactList.add("contact");
+		
+		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
+		contactList.add("contact");
+		
+		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
+		contactList.add("contact");
+		
 	}
 		
 	
@@ -80,30 +93,20 @@ public class AddressBook extends JFrame implements ActionListener {
 				break;
 				
 			case "New contact":
-				for (int i = 0;i<contactList.length;i++){ 
-					contact =new Contact();
-		        	
-		        	
-		        	contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
-	         		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
-	        		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
-	        		contactList[i]=contact;
-         		}
+         		addContact();
          		save();
          		break;
          		
          	case "List of contacts":
          		open();
-         		int i = 0;
-         		String message = "";
-				while(!contactList[i].getForename().equals("")){
-					message += contactList[i].getForename();
-					message += contactList[i].getSurname();
-					message += contactList[i].getEmail();
+         	/*	String message = "";
+         		for(int i = 0;i<contactList.size();i++){
+         			message += (contactList.get(i));
 					message += "\n";
 					i++;
-				}
-					
+}  	
+         		}*/
+         			
 				break;
 				
 			case "Delete contact":
