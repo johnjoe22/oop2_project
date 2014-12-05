@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +9,7 @@ public class AddressBook extends JFrame implements ActionListener {
 	
 	JMenu menuItem;
 	ArrayList <String> contactList;
+	File file = new File("contactList.dat");
 	
 	// Class
 	public AddressBook(){
@@ -34,13 +34,11 @@ public class AddressBook extends JFrame implements ActionListener {
 	
 	// SAVE
 	public void save(){
-		File file = new File("contactList.dat");
+		
 		try{	
 			FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 				oos.writeObject(contactList);
-			
-			
 			oos.close();	
 			JOptionPane.showMessageDialog(null,"Conatcts saved ");
 		}catch(Exception e){
@@ -50,7 +48,6 @@ public class AddressBook extends JFrame implements ActionListener {
     
     // OPEN
 	public void open(){
-		File file = new File("contactList.dat");
 		try{
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -69,18 +66,35 @@ public class AddressBook extends JFrame implements ActionListener {
 
 	
 	//ADDING CONTACT
-	public void addContact(){
-		String quit;	 
-		toString();
-		contactList = new ArrayList<String>();
+	public void addContact(){	 
+			
+		//toString();
 		
 		Contact contact = new Contact();
+		String s[]= contacts{
+			System.out.println("Forename");
+				forename = input.nextLine();
+		}
+		ArrayList<String> contactList = new ArrayList<String>();
+		contactList.add(4);
 		
-		contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
+		//Contact contact = new Contact();
+		
+		/*contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
 		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
 		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
-		contactList.add(contact.toString());
-	}		
+		contactList.add(contact.toString());*/
+		save();
+	}	
+	//LISTING CONTACTS 
+	public void listContact(){
+		open();	
+		ListIterator it = contactList.listIterator();
+		while(it.hasNext()){
+				String element = String.valueOf(it.next());
+         		JOptionPane.showMessageDialog(null,"Contact :"+ element);
+         		}
+	}	
 	
 	
 	// LISTENER
@@ -95,15 +109,11 @@ public class AddressBook extends JFrame implements ActionListener {
 				
 			case "New contact":
          		addContact();
-         		save();
+         		
          		break;
          		
          	case "List of contacts":
-         		open();
-         		
-         		for(int i = 0;i<contactList.size();i++){
-         			JOptionPane.showMessageDialog(null,"info"+(contactList.get(i)));
-         		}
+         		listContact();
          			
 				break;
 				
