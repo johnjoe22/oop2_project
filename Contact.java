@@ -41,5 +41,5 @@ public class Contact implements Serializable{
 	}
 	public String getEmail(){
 		return this.email+"\n";
-	}
+	}	
 }

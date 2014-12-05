@@ -60,10 +60,18 @@ public class AddressBook extends JFrame implements ActionListener {
 		}catch(Exception e){}
 					 
 	}
+		//TOSTRING
+	public String toString(){
+	Contact contact = new Contact();	
+	return "Forename:" + contact.forename + " "
+                + "Surname:" + contact.surname + " "+ "E-mail:" + contact.email +"\n";
+}
+
 	
 	//ADDING CONTACT
 	public void addContact(){
 		String quit;	 
+		toString();
 		contactList = new ArrayList<String>();
 		
 		Contact contact = new Contact();
@@ -71,9 +79,8 @@ public class AddressBook extends JFrame implements ActionListener {
 		contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
 		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
 		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
-		contactList.add();
-	}
-		
+		contactList.add(contact.toString());
+	}		
 	
 	
 	// LISTENER
@@ -96,9 +103,6 @@ public class AddressBook extends JFrame implements ActionListener {
          		
          		for(int i = 0;i<contactList.size();i++){
          			JOptionPane.showMessageDialog(null,"info"+(contactList.get(i)));
-         		
-					i++;
-
          		}
          			
 				break;
