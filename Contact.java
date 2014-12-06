@@ -3,9 +3,9 @@
 import java.io.*;
 public class Contact implements Serializable{
 	
-	String forename;
-	String surname;
-	String email;
+	private String forename;
+	private String surname;
+	private String email;
 		
 	
 	public void Contact(){
@@ -13,13 +13,6 @@ public class Contact implements Serializable{
 		surname = "";
 		email = "";
 	}
-	
-	public void Contact(String forename,String surname, String email){
-		this.setForename(forename);
-		this.setSurname(surname);
-		this.setEmail(email);
-	}
-	
 	
 	// SET
 	public void setForename(String forename){
@@ -45,4 +38,10 @@ public class Contact implements Serializable{
 	public String getEmail(){
 		return this.email+"\n";
 	}	
+		
+	public void Contact(String forename,String surname, String email){
+		setForename(forename);
+		setSurname(surname);
+		setEmail(email);
+	}
 }
