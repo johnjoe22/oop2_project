@@ -8,7 +8,7 @@ import java.util.*;
 public class AddressBook extends JFrame implements ActionListener {
 	
 	JMenu menuItem;
-	ArrayList <String> contactList;
+	ArrayList<Contact> contactList = new ArrayList<Contact>();
 	File file = new File("contactList.dat");
 	
 	// Class
@@ -57,43 +57,25 @@ public class AddressBook extends JFrame implements ActionListener {
 		}catch(Exception e){}
 					 
 	}
-		//TOSTRING
-	public String toString(){
-	Contact contact = new Contact();	
-	return "Forename:" + contact.forename + " "
-                + "Surname:" + contact.surname + " "+ "E-mail:" + contact.email +"\n";
-}
-
 	
 	//ADDING CONTACT
 	public void addContact(){	 
 			
-		//toString();
+		String forename = JOptionPane.showInputDialog(null,"Forname: ");
+		String surname = JOptionPane.showInputDialog(null,"Surname: ");
+		String email = JOptionPane.showInputDialog(null,"E-mail: ");
+ 		Contact contact = new Contact(forename,surname,email);
+ 
+		contactList.add(contact);
 		
-		Contact contact = new Contact();
-		String s[]= contacts{
-			System.out.println("Forename");
-				forename = input.nextLine();
-		}
-		ArrayList<String> contactList = new ArrayList<String>();
-		contactList.add(4);
 		
-		//Contact contact = new Contact();
 		
-		/*contact.setForename (JOptionPane.showInputDialog(null,"Forname: "));
-		contact.setSurname (JOptionPane.showInputDialog(null,"Surname: "));
-		contact.setEmail (JOptionPane.showInputDialog(null,"E-mail: "));
-		contactList.add(contact.toString());*/
-		save();
 	}	
 	//LISTING CONTACTS 
 	public void listContact(){
-		open();	
-		ListIterator it = contactList.listIterator();
-		while(it.hasNext()){
-				String element = String.valueOf(it.next());
-         		JOptionPane.showMessageDialog(null,"Contact :"+ element);
-         		}
+			
+			JOptionPane.showMessageDialog(null,"ArrayList"+contactList);
+	
 	}	
 	
 	
@@ -122,7 +104,7 @@ public class AddressBook extends JFrame implements ActionListener {
 				break;
 				
 			case "Create mail":
-				JOptionPane.showMessageDialog(null,"Menu item"+menuName+" is selected.");
+				
 				break;	
         }
     }

@@ -5,10 +5,11 @@ public class Contact implements Serializable{
 	String surname;
 	String email;
 		
+	
 	public void Contact(){
-		forename = "";
-		surname = "";
-		email = "";
+		forename = " ";
+		surname = " ";
+		email = " ";
 	}
 	
 	public void Contact(String forename,String surname, String email){
