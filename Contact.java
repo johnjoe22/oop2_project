@@ -1,3 +1,5 @@
+//Contact.java
+// johnjoe landers - t00174319
 import java.io.*;
 public class Contact implements Serializable{
 	
@@ -7,9 +9,9 @@ public class Contact implements Serializable{
 		
 	
 	public void Contact(){
-		forename = " ";
-		surname = " ";
-		email = " ";
+		forename = "";
+		surname = "";
+		email = "";
 	}
 	
 	public void Contact(String forename,String surname, String email){
