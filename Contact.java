@@ -13,6 +13,11 @@ public class Contact implements Serializable{
 		surname = "";
 		email = "";
 	}
+	public void Contact(String forename,String surname, String email){
+		setForename(forename);
+		setSurname(surname);
+		setEmail(email);
+	}
 	
 	// SET
 	public void setForename(String forename){
@@ -39,9 +44,5 @@ public class Contact implements Serializable{
 		return this.email+"\n";
 	}	
 		
-	public void Contact(String forename,String surname, String email){
-		setForename(forename);
-		setSurname(surname);
-		setEmail(email);
-	}
+	
 }
