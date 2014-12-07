@@ -19,6 +19,8 @@ public class AddressBook extends JFrame implements ActionListener {
 		setSize(600,600);
 		setLocation(200,200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setIconImage(new ImageIcon("Address-Book-icon.png").getImage());
+		// http://icons.iconarchive.com/icons/artua/mac/256/Address-Book-icon.png
 		
 		createMenu();
 		
@@ -81,14 +83,13 @@ public class AddressBook extends JFrame implements ActionListener {
 		
 	//DELETE CONTACT
 	public void deleteContact(){
-		int number;
-		number = JOptionPane.showInputDialog(null,"Please enter the number you whish to remove ");;
-		
-		if (number > contactList.length && number < 1){
+		int number = Integer.parseInt( JOptionPane.showInputDialog(null,"Please enter the number you wish to remove "));
+		int arraySize = contactList.size();
+		if (number > arraySize && number < 1){
 			JOptionPane.showMessageDialog(null,"You didn't enter a valid number ");
 		}
 		else{
-			contactlist.remove(number-1);
+			contactList.remove(number-1);
 		}
 	}
 	
