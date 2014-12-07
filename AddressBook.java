@@ -11,13 +11,13 @@ public class AddressBook extends JFrame implements ActionListener {
 	JMenu menuItem;
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
 	File file = new File("message.txt");
-	Contact contact = new Contact();
+	
 	// Class
 	public AddressBook(){
 		
 		setTitle("Address Book");
 		setSize(600,600);
-		setLocation(200,200);
+		setLocation(200,100);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon("Address-Book-icon.png").getImage());
 		// http://icons.iconarchive.com/icons/artua/mac/256/Address-Book-icon.png
@@ -65,7 +65,7 @@ public class AddressBook extends JFrame implements ActionListener {
 		String forename = JOptionPane.showInputDialog(null,"Forname: ");
 		String surname = JOptionPane.showInputDialog(null,"Surname: ");
 		String email = JOptionPane.showInputDialog(null,"E-mail: ");
- 		
+ 		Contact contact = new Contact();
  
 		contactList.add(contact);
 		
@@ -74,10 +74,13 @@ public class AddressBook extends JFrame implements ActionListener {
 	}	
 	//LISTING CONTACTS 
 	public void listContact(){
+		String message="";
 		 for(Contact c:contactList) {
-           JOptionPane.showMessageDialog(null,"The conatacts are \n"+c);
+		 	
+           	message += "\n"+c;
            //http://stackoverflow.com/questions/2047003/print-arraylist-element
         }
+        JOptionPane.showMessageDialog(null,"The conatacts are \n" + message);
 			
 			
 	
@@ -99,7 +102,7 @@ public class AddressBook extends JFrame implements ActionListener {
 	public void createMail(){
 		
 		CreateMail mail = new CreateMail();
-		mail.setTitle("Address Book -Create mail");
+		mail.setTitle("Address Book - Create mail");
 		mail.setSize(400,400);
 		mail.setLocation(200,200);
 		mail.setIconImage(new ImageIcon("Address-Book-icon.png").getImage());

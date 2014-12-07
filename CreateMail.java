@@ -9,16 +9,13 @@ public class CreateMail extends JFrame{
 		
 		public void CreateMail(){
 			
-			item1 = new JLabel("To: ");
-			item1.setSize(30,30);
+			JLabel item1 = new JLabel("To: ");
 			add(item1);
 				
-			item2 = new JLabel("Enter message here: ");
-			item1.setSize(30,30);
+			JLabel item2 = new JLabel("Enter message here: ");
 			add(item2);
 				
-			button = new JButton("Enter");
-			item1.setSize(30,30);
+			JButton button = new JButton("Enter");
 			add(button);
 			
 			
