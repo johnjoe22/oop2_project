@@ -78,6 +78,19 @@ public class AddressBook extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null,"ArrayList"+contactList);
 	
 	}	
+		
+	//DELETE CONTACT
+	public void deleteContact(){
+		int number;
+		number = JOptionPane.showInputDialog(null,"Please enter the number you whish to remove ");;
+		
+		if (number > contactList.length && number < 1){
+			JOptionPane.showMessageDialog(null,"You didn't enter a valid number ");
+		}
+		else{
+			contactlist.remove(number-1);
+		}
+	}
 	
 	
 	// LISTENER
@@ -101,7 +114,7 @@ public class AddressBook extends JFrame implements ActionListener {
 				break;
 				
 			case "Delete contact":
-				JOptionPane.showMessageDialog(null,"Menu Item " + menuName + " is selected.");
+				deleteContact();
 				break;
 				
 			case "Create mail":
