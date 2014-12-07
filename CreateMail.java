@@ -3,18 +3,25 @@ import java.awt.*;
 
 public class CreateMail extends JFrame{
 		
-		private JLabel item1;
-		private JLabel item2;
-		private JButton button;
+		JLabel item1;
+		JLabel item2;
+		JButton button;
 		
-		public CreateMail(){
+		public void CreateMail(){
 			
 			item1 = new JLabel("To: ");
+			item1.setSize(30,30);
 			add(item1);
+				
 			item2 = new JLabel("Enter message here: ");
+			item1.setSize(30,30);
 			add(item2);
-			
-			JButton button = new JButton("Enter");
+				
+			button = new JButton("Enter");
+			item1.setSize(30,30);
 			add(button);
+			
+			
+		
 		}
 }

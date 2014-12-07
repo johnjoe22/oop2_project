@@ -10,8 +10,8 @@ public class AddressBook extends JFrame implements ActionListener {
 	
 	JMenu menuItem;
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
-	File file = new File("contactList.dat");
-	
+	File file = new File("message.txt");
+	Contact contact = new Contact();
 	// Class
 	public AddressBook(){
 		
@@ -43,7 +43,7 @@ public class AddressBook extends JFrame implements ActionListener {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 				oos.writeObject(contactList);
 			oos.close();	
-			JOptionPane.showMessageDialog(null,"Conatcts saved ");
+			JOptionPane.showMessageDialog(null,"Saved ");
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null,"ERROR");
 		}   			
@@ -54,8 +54,6 @@ public class AddressBook extends JFrame implements ActionListener {
 		try{
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			for(int i=0;i<contactList.size();i++){
-			}
 			ois.close();	
 		}catch(Exception e){}
 					 
@@ -67,7 +65,7 @@ public class AddressBook extends JFrame implements ActionListener {
 		String forename = JOptionPane.showInputDialog(null,"Forname: ");
 		String surname = JOptionPane.showInputDialog(null,"Surname: ");
 		String email = JOptionPane.showInputDialog(null,"E-mail: ");
- 		Contact contact = new Contact(forename,surname,email);
+ 		
  
 		contactList.add(contact);
 		
@@ -76,8 +74,12 @@ public class AddressBook extends JFrame implements ActionListener {
 	}	
 	//LISTING CONTACTS 
 	public void listContact(){
+		 for(Contact c:contactList) {
+           JOptionPane.showMessageDialog(null,"The conatacts are \n"+c);
+           //http://stackoverflow.com/questions/2047003/print-arraylist-element
+        }
 			
-			JOptionPane.showMessageDialog(null,"ArrayList"+contactList);
+			
 	
 	}	
 		
@@ -93,6 +95,16 @@ public class AddressBook extends JFrame implements ActionListener {
 		}
 	}
 	
+	//CREATE MAIL
+	public void createMail(){
+		
+		CreateMail mail = new CreateMail();
+		mail.setTitle("Address Book -Create mail");
+		mail.setSize(400,400);
+		mail.setLocation(200,200);
+		mail.setIconImage(new ImageIcon("Address-Book-icon.png").getImage());
+		mail.setVisible(true);
+	}
 	
 	// LISTENER
 	public void actionPerformed(ActionEvent e) {
@@ -119,7 +131,7 @@ public class AddressBook extends JFrame implements ActionListener {
 				break;
 				
 			case "Create mail":
-				
+				createMail();
 				break;	
         }
     }
