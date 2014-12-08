@@ -35,11 +35,7 @@ public class AddressBook extends JFrame implements ActionListener {
         menuBar.add(menuItem);
 	}
 	
-	// Main
-	public static void main(String[] args) {
-		AddressBook frame = new AddressBook();
-        frame.setVisible(true);
-	}
+	
 	/**
 	 *This method Adding contact adds forename surname email to a array
 	 *then adds that array to to the arraylist
