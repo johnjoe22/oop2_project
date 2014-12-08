@@ -6,18 +6,8 @@ public class Contact implements Serializable{
 	private String forename;
 	private String surname;
 	private String email;
-		
 	
-	public void Contact(){
-		forename = "";
-		surname = "";
-		email = "";
-	}
-	public void Contact(String forename,String surname, String email){
-		setForename(forename);
-		setSurname(surname);
-		setEmail(email);
-	}
+	
 	
 	// SET
 	public void setForename(String forename){
@@ -35,13 +25,13 @@ public class Contact implements Serializable{
 	
 	// GET
 	public String getForename(){
-		return this.forename+"\n";
+		return this.forename;
 	}
 	public String getSurname(){
-		return this.surname+"\n";
+		return this.surname;
 	}
 	public String getEmail(){
-		return this.email+"\n";
+		return this.email;
 	}	
 		
 	

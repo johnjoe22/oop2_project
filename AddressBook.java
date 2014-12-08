@@ -65,32 +65,38 @@ public class AddressBook extends JFrame implements ActionListener {
 		String forename = JOptionPane.showInputDialog(null,"Forname: ");
 		String surname = JOptionPane.showInputDialog(null,"Surname: ");
 		String email = JOptionPane.showInputDialog(null,"E-mail: ");
- 		Contact contact = new Contact();
- 
-		contactList.add(contact);
 		
-		
-		
+ 		Contact newContact = new Contact();
+ 		newContact.setForename(forename);
+		newContact.setSurname(surname);
+		newContact.setEmail(email);
+ 		contactList.add(newContact);
 	}	
-	//LISTING CONTACTS 
+	/**
+	 *This method list contact to a jOptionPne
+	 *
+	 */
 	public void listContact(){
 		String message="";
+		int j = 1;
 		 for(Contact c:contactList) {
 		 	
-           	message += "\n"+c;
+           	message += "\n"+j+": "+c.getForename()+", "+c.getSurname()+", "+c.getEmail();
+           	j++;
            //http://stackoverflow.com/questions/2047003/print-arraylist-element
         }
         JOptionPane.showMessageDialog(null,"The conatacts are \n" + message);
-			
-			
-	
 	}	
 		
 	//DELETE CONTACT
 	public void deleteContact(){
 		int number = Integer.parseInt( JOptionPane.showInputDialog(null,"Please enter the number you wish to remove "));
 		int arraySize = contactList.size();
-		if (number > arraySize && number < 1){
+		if (arraySize==0){
+			JOptionPane.showMessageDialog(null,"No contacts please create some");
+			
+		}
+		else if (number > arraySize || number < 1){
 			JOptionPane.showMessageDialog(null,"You didn't enter a valid number ");
 		}
 		else{
@@ -102,11 +108,22 @@ public class AddressBook extends JFrame implements ActionListener {
 	public void createMail(){
 		
 		CreateMail mail = new CreateMail();
-		mail.setTitle("Address Book - Create mail");
-		mail.setSize(400,400);
-		mail.setLocation(200,200);
-		mail.setIconImage(new ImageIcon("Address-Book-icon.png").getImage());
-		mail.setVisible(true);
+		
+		
+	/*	if(textField1 = " "){
+			JOptionPane.showMessageDialog(null,"Please input the contact number in the To: box");
+		}
+		else if (textField2 = " "){
+			JOptionPane.showMessageDialog(null,"Error message box no text found");
+		}
+		else if(textField1 = " " || textField2 = " "){
+			save();	
+		}*/
+		
+	}
+	//CREATE DRAFTS
+	public void createDrafts(){
+		open();
 	}
 	
 	// LISTENER
@@ -135,6 +152,10 @@ public class AddressBook extends JFrame implements ActionListener {
 				
 			case "Create mail":
 				createMail();
+				break;
+			
+			case "Drafts":
+				createDrafts();
 				break;	
         }
     }
@@ -161,6 +182,10 @@ public class AddressBook extends JFrame implements ActionListener {
         menuItem.add( item  );
         
         item = new JMenuItem("Create mail");    //create mail
+        item.addActionListener( this );
+        menuItem.add( item );
+        
+        item = new JMenuItem("Drafts");    //Drafts
         item.addActionListener( this );
         menuItem.add( item );
         
