@@ -1,14 +1,17 @@
 //Contact.java
 // johnjoe landers - t00174319
 import java.io.*;
+/**This is an instantiable class*/
 public class Contact implements Serializable{
+
+	//attributes
 	
 	private String forename;
 	private String surname;
 	private String email;
 	
 	
-	
+	/**constructer method*/
 	// SET
 	public void setForename(String forename){
 		this.forename = forename;
@@ -23,6 +26,10 @@ public class Contact implements Serializable{
 		this.email = email;
 	}
 	
+	/** acessor method to return the contact forename 
+	 *surname email */
+
+	
 	// GET
 	public String getForename(){
 		return this.forename;
@@ -35,4 +42,4 @@ public class Contact implements Serializable{
 	}	
 		
 	
-}
+}//end class

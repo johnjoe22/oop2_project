@@ -10,9 +10,15 @@ public class AddressBook extends JFrame implements ActionListener {
 	
 	JMenu menuItem;
 	ArrayList<Contact> contactList = new ArrayList<Contact>();
-	File file = new File("message.txt");
 	
+	
+	/**
+	 *This is setting the title size location and icon in the main jframe
+	 *it is also adding the menubar and menu items to the jframe
+	 */
+	 
 	// Class
+	
 	public AddressBook(){
 		
 		setTitle("Address Book");
@@ -34,30 +40,11 @@ public class AddressBook extends JFrame implements ActionListener {
 		AddressBook frame = new AddressBook();
         frame.setVisible(true);
 	}
-	
-	// SAVE
-	public void save(){
-		
-		try{	
-			FileOutputStream fos = new FileOutputStream(file);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(contactList);
-			oos.close();	
-			JOptionPane.showMessageDialog(null,"Saved ");
-		}catch(Exception e){
-			JOptionPane.showMessageDialog(null,"ERROR");
-		}   			
-    }
-    
-    // OPEN
-	public void open(){
-		try{
-			FileInputStream fis = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			ois.close();	
-		}catch(Exception e){}
-					 
-	}
+	/**
+	 *This method Adding contact adds forename surname email to a array
+	 *then adds that array to to the arraylist
+	 *
+	 */
 	
 	//ADDING CONTACT
 	public void addContact(){	 
@@ -73,21 +60,41 @@ public class AddressBook extends JFrame implements ActionListener {
  		contactList.add(newContact);
 	}	
 	/**
-	 *This method list contact to a jOptionPne
+	 *This method list contact to a JOptionPane 
+	 *it goes through a for loop getting forename surname email
+	 *it stores it in message and prints it out using JoptionPane
 	 *
 	 */
 	public void listContact(){
 		String message="";
 		int j = 1;
+/*****************************************************
+*    Title: printing out arraylist elements
+*    Author: mike yaworski
+*    Site owner/sponsor: stackoverflow.com
+*    Accesed: 06/12/2014
+*    Code version: edited Jan 10 '13 at 17:42
+*    Availability: http://stackoverflow.com/a/20027334
+
+*****************************************************/
+		//Start of [non-original or refactored] code
 		 for(Contact c:contactList) {
 		 	
            	message += "\n"+j+": "+c.getForename()+", "+c.getSurname()+", "+c.getEmail();
            	j++;
-           //http://stackoverflow.com/questions/2047003/print-arraylist-element
         }
+        //end of [non-original or refactored] code
         JOptionPane.showMessageDialog(null,"The conatacts are \n" + message);
 	}	
 		
+	/**
+	 *This method delete contact stores a number entered by the user 
+	 *checks to see if that number is on the arraylist 
+	 *checks to see if the array is populated
+	 *and then it removes the contact from the arraylist
+	 *
+	 */
+	 
 	//DELETE CONTACT
 	public void deleteContact(){
 		
@@ -105,6 +112,13 @@ public class AddressBook extends JFrame implements ActionListener {
 		}
 	}
 	
+	/**
+	 *This method Edit contact ask the user for the number of the contact
+	 *get the size of the array
+	 *checks to see if the array is populated
+	 *then it changes the details of that contact
+	 *
+	 */
 	//EDIT CONTACT
 	public void editContact(){
 		
@@ -130,7 +144,12 @@ public class AddressBook extends JFrame implements ActionListener {
 		}
 		
 	}
-	
+/**
+	 *This listener listens for events happening 
+	 *and if the item is clicked do this 
+	 *eg quit will quit when clicked
+	 *
+	 */
 	
 	// LISTENER
 	public void actionPerformed(ActionEvent e) {
@@ -164,7 +183,10 @@ public class AddressBook extends JFrame implements ActionListener {
         }
     }
     
-    
+    /**
+	 *This method createMenu create a jmenuitem and add it to the jmenu
+	 *
+	 */
 	
 	// CREATE MENU		
 	public void createMenu(){
