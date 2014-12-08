@@ -90,6 +90,7 @@ public class AddressBook extends JFrame implements ActionListener {
 		
 	//DELETE CONTACT
 	public void deleteContact(){
+		
 		int number = Integer.parseInt( JOptionPane.showInputDialog(null,"Please enter the number you wish to remove "));
 		int arraySize = contactList.size();
 		if (arraySize==0){
@@ -104,27 +105,32 @@ public class AddressBook extends JFrame implements ActionListener {
 		}
 	}
 	
-	//CREATE MAIL
-	public void createMail(){
-		
-		CreateMail mail = new CreateMail();
+	//EDIT CONTACT
+	public void editContact(){
 		
 		
-	/*	if(textField1 = " "){
-			JOptionPane.showMessageDialog(null,"Please input the contact number in the To: box");
+		int newNum = Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter the number of the contact you wish to Edit"));
+		int num = newNum -1;
+		int arraySize = contactList.size();
+		if (arraySize==0){
+			JOptionPane.showMessageDialog(null,"No contacts to edit please Create some");
+			
 		}
-		else if (textField2 = " "){
-			JOptionPane.showMessageDialog(null,"Error message box no text found");
+		else if (num > arraySize || num < 0){
+			JOptionPane.showMessageDialog(null,"You didn't enter a valid number ");
 		}
-		else if(textField1 = " " || textField2 = " "){
-			save();	
-		}*/
+		else {
+			String forename = JOptionPane.showInputDialog(null,"Changed Forname: ");
+			String surname = JOptionPane.showInputDialog(null,"Changed Surname: ");
+			String email = JOptionPane.showInputDialog(null,"Changed E-mail: ");
+ 			
+			contactList.get(num).setForename(forename);
+			contactList.get(num).setSurname(surname);
+			contactList.get(num).setEmail(email);
+		}
 		
 	}
-	//CREATE DRAFTS
-	public void createDrafts(){
-		open();
-	}
+	
 	
 	// LISTENER
 	public void actionPerformed(ActionEvent e) {
@@ -150,13 +156,11 @@ public class AddressBook extends JFrame implements ActionListener {
 				deleteContact();
 				break;
 				
-			case "Create mail":
-				createMail();
+			case "Edit contact":
+				editContact();
 				break;
 			
-			case "Drafts":
-				createDrafts();
-				break;	
+				
         }
     }
     
@@ -181,11 +185,7 @@ public class AddressBook extends JFrame implements ActionListener {
         item.addActionListener( this );
         menuItem.add( item  );
         
-        item = new JMenuItem("Create mail");    //create mail
-        item.addActionListener( this );
-        menuItem.add( item );
-        
-        item = new JMenuItem("Drafts");    //Drafts
+        item = new JMenuItem("Edit contact");    //Edit Contact
         item.addActionListener( this );
         menuItem.add( item );
         
